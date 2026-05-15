@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rgx5w)%_ak=eny((==i)%z_-bmmace@5gf2+(a10lfy2o_*dvp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +41,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_ratelimit.middleware.RatelimitMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
