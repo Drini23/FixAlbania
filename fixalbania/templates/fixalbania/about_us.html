@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>FixAlbania | About Us – Reliable Repairs & Services</title>
+  <!-- Google Fonts + smooth modern base -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefcf8;
+      color: #1e2a2f;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* container utility */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* header navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 24px 0 16px 0;
+      border-bottom: 2px solid #f0e9df;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #c7420e, #e07c2c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo-accent {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #b45f2b;
+      background: #fff1e6;
+      padding: 4px 12px;
+      border-radius: 40px;
+    }
+
+    /* HOME LINK BUTTON - main style */
+    .home-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 1.5px solid #decfbc;
+      padding: 10px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #54442b;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .home-link-btn i {
+      font-size: 1.1rem;
+      color: #c96f2c;
+      transition: transform 0.2s;
+    }
+
+    .home-link-btn:hover {
+      background: #feeedf;
+      border-color: #cfac89;
+      color: #3b2c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -8px rgba(0,0,0,0.1);
+    }
+
+    .home-link-btn:hover i {
+      transform: translateX(-3px);
+    }
+
+    /* hero about section */
+    .about-hero {
+      padding: 60px 0 40px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ffeee4;
+      color: #cb6e2e;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      color: #2b2b1f;
+      margin-bottom: 24px;
+    }
+
+    .highlight {
+      color: #d4641c;
+      border-bottom: 3px solid #ffcd94;
+      display: inline-block;
+    }
+
+    .lead {
+      font-size: 1.3rem;
+      color: #4a4a3a;
+      max-width: 85%;
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+
+    /* stats cards */
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 50px 0 30px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 32px;
+      padding: 24px 28px;
+      flex: 1 1 180px;
+      box-shadow: 0 12px 28px -12px rgba(0,0,0,0.06);
+      border: 1px solid #f3e5d8;
+      transition: all 0.2s;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #cb6e2e;
+    }
+
+    .stat-label {
+      font-weight: 500;
+      color: #6e5a48;
+      margin-top: 8px;
+    }
+
+    /* mission & story 2 column */
+    .mission-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      margin: 60px 0 70px;
+      align-items: center;
+    }
+
+    .mission-text {
+      flex: 1.2;
+    }
+
+    .mission-text h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #2a3a32;
+    }
+
+    .mission-text p {
+      font-size: 1.05rem;
+      color: #3d3f2e;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .mission-visual {
+      flex: 0.9;
+      background: #f7ede2;
+      border-radius: 48px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 20px 32px -12px rgba(0,0,0,0.05);
+    }
+
+    .mission-visual i {
+      font-size: 4rem;
+      color: #dc7f3c;
+      margin-bottom: 16px;
+    }
+
+    .mission-visual h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .values-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin: 40px 0 60px;
+    }
+
+    .value-item {
+      background: #ffffffec;
+      border-radius: 28px;
+      padding: 28px 22px;
+      flex: 1 1 240px;
+      text-align: center;
+      border: 1px solid #eddfd1;
+      transition: all 0.2s;
+    }
+
+    .value-item i {
+      font-size: 2.5rem;
+      color: #dd7c36;
+      margin-bottom: 20px;
+    }
+
+    .value-item h4 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .value-item p {
+      color: #5d5342;
+      font-size: 0.95rem;
+    }
+
+    .team-section {
+      margin: 50px 0 70px;
+      text-align: center;
+    }
+
+    .team-section h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .team-desc {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      color: #5f5a48;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .team-member {
+      background: white;
+      border-radius: 44px;
+      padding: 24px 28px 28px;
+      width: 240px;
+      text-align: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+      border: 1px solid #f0e3d6;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      background: #e6d5c2;
+      margin: 0 auto 18px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #b2571a;
+    }
+
+    .team-member h4 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .team-member .role {
+      font-size: 0.85rem;
+      color: #cb6e2e;
+      font-weight: 600;
+      margin: 6px 0;
+    }
+
+    .footer {
+      background: #fff6ef;
+      border-radius: 48px 48px 0 0;
+      padding: 40px 0 30px;
+      margin-top: 45px;
+      border-top: 1px solid #f4e3d4;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6a5d4c;
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        padding: 0 24px;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+      .lead {
+        max-width: 100%;
+        font-size: 1.1rem;
+      }
+      .mission-row {
+        flex-direction: column;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .home-link-btn {
+        align-self: flex-start;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .stats-grid {
+        justify-content: center;
+      }
+      .stat-card {
+        flex: 1 1 140px;
+        text-align: center;
+      }
+      .value-item {
+        flex: 1 1 100%;
+      }
+    }
+
+    .btn-outline-warm {
+      background: transparent;
+      border: 1px solid #daa06a;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 500;
+      text-decoration: none;
+      color: #b15118;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+    .btn-outline-warm:hover {
+      background: #fdeddde0;
+      border-color: #c96a2a;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Navigation: Logo + Home link button (prominent) -->
+  <div class="navbar">
+    <div class="logo-area">
+      <span class="logo">FixAlbania</span>
+      <span class="logo-accent"><i class="fas fa-wrench"></i> REPAIR HUB</span>
+    </div>
+    <!-- HOME LINK BUTTON (exactly as required) -->
+    <a href="{% url 'home' %}" class="home-link-btn">
+      <i class="fas fa-home"></i> Home
+    </a>
+    <!-- Note: "index.html" is the standard homepage link. If your homepage is different,
+    you can replace 'href="index.html"' with '/' or your actual homepage URL.  -->
+  </div>
+
+  <!-- About Hero Section -->
+  <div class="about-hero">
+    <div class="badge">
+      <i class="fas fa-shield-alt"></i> SINCE 2019
+    </div>
+    <h1>
+      FixAlbania: <span class="highlight">your trusted partner</span><br>
+      for fast & honest repairs.
+    </h1>
+    <p class="lead">
+      From smartphones to home appliances — we bring Albanian craftsmanship and modern reliability together. 
+      Over 15,000+ happy customers across Tirana, Durrës & beyond.
+    </p>
+    <!-- quick stats row -->
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number">15k+</div><div class="stat-label">Devices fixed</div></div>
+      <div class="stat-card"><div class="stat-number">98%</div><div class="stat-label">Satisfaction rate</div></div>
+      <div class="stat-card"><div class="stat-number">2h</div><div class="stat-label">Express service</div></div>
+      <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Support & pickup</div></div>
+    </div>
+  </div>
+
+  <!-- Mission & Story (core about) -->
+  <div class="mission-row">
+    <div class="mission-text">
+      <h2><i class="fas fa-compass" style="color: #db7936; margin-right: 8px;"></i> Our mission: make fixing effortless</h2>
+      <p>FixAlbania was born out of frustration — long waiting times, unclear pricing, and wasted gadgets. We created a repair ecosystem that puts <strong>transparency, speed, and quality</strong> first. Every repair is diagnosed in front of you (or via video call) and backed by a 6-month warranty.</p>
+      <p>We are proud to be Albania's most reviewed repair network, combining traditional know-how with modern diagnostic tools. Our technicians undergo monthly training and use only genuine or high-grade replacement parts.</p>
+      <a href="{% url 'services' %}"class="btn-outline-warm"><i class="fas fa-tools"></i> Explore our services</a>
+    </div>
+    <div class="mission-visual">
+      <i class="fas fa-microchip"></i>
+      <h3>Precision • Trust • Care</h3>
+      <p style="font-size: 0.9rem;">Certified electronics & home appliance repair center. We fix what matters.</p>
+      <div style="margin-top: 16px;"><i class="fas fa-map-marker-alt"></i> 6 locations nationwide</div>
+    </div>
+  </div>
+
+  <!-- Core Values -->
+  <div>
+    <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">What drives FixAlbania</h2>
+    <div class="values-grid">
+      <div class="value-item"><i class="fas fa-hand-holding-heart"></i><h4>Honest pricing</h4><p>No hidden fees. Upfront quote before any repair, always.</p></div>
+      <div class="value-item"><i class="fas fa-rocket"></i><h4>Speedy service</h4><p>Most repairs same-day. We respect your time and schedule.</p></div>
+      <div class="value-item"><i class="fas fa-chalkboard-user"></i><h4>Expert team</h4><p>8+ certified engineers with years of hands‑on experience.</p></div>
+      <div class="value-item"><i class="fas fa-leaf"></i><h4>Eco-friendly</h4><p>We recycle e-waste and extend device lifespan – better for Albania.</p></div>
+    </div>
+  </div>
+
+  <!-- Our story + real journey -->
+  <div style="background: #fffaf5; border-radius: 48px; padding: 40px 32px; margin: 20px 0 40px;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-size: 1.9rem; margin-bottom: 16px;">From a small workshop to a trusted name</h2>
+      <p style="margin-bottom: 20px;">FixAlbania started in 2019 as a one-man repair shop in the heart of Tirana. Founder Erjon B. saw that locals often threw away repairable electronics because they couldn't find reliable service. Today, we’re a team of 28 professionals, serving thousands each month — and still growing. Our motto: <strong>"Nëse mund të rregullohet, ne mund ta rregullojmë."</strong> (If it can be fixed, we can fix it.)</p>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 24px;">
+        <div><i class="fas fa-check-circle" style="color: #d66823;"></i> 6+ service centers nationwide</div>
+        <div><i class="fas fa-check-circle" style="color: #d66823;"></i> Free diagnostic with any repair</div>
+        <div><i class="fas fa-check-circle" style="color: #d66823;"></i> 12-month warranty on select repairs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Meet some of our team (human touch) -->
+  <div class="team-section">
+    <h2>Behind the tools</h2>
+    <div class="team-desc">Passionate technicians & support heroes dedicated to bringing your devices back to life.</div>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="avatar"><i class="fas fa-user-tie"></i></div>
+        <h4>Erjon Basha</h4>
+        <div class="role">Founder & Master Technician</div>
+        <p style="font-size: 0.8rem; margin-top: 8px;">15+ years in electronics, ex-Apple certified.</p>
+      </div>
+      <div class="team-member">
+        <div class="avatar"><i class="fas fa-user-gear"></i></div>
+        <h4>Era Hoxha</h4>
+        <div class="role">Operations Lead</div>
+        <p style="font-size: 0.8rem; margin-top: 8px;">Customer experience & quality control.</p>
+      </div>
+      <div class="team-member">
+        <div class="avatar"><i class="fas fa-microchip"></i></div>
+        <h4>Genti Marku</h4>
+        <div class="role">Senior Repair Engineer</div>
+        <p style="font-size: 0.8rem; margin-top: 8px;">Specialist in mobile & console repairs.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to action + extra home button subtle (already have main home link, but adds consistency) -->
+  <div style="background: linear-gradient(105deg, #28241c 0%, #3f3326 100%); border-radius: 56px; padding: 48px 40px; margin: 30px 0 50px; text-align: center; color: white;">
+    <h3 style="font-size: 1.9rem; font-weight: 700; margin-bottom: 12px;">Ready to fix it?</h3>
+    <p style="opacity: 0.9; margin-bottom: 28px;">Book a repair, request a quote, or visit our nearest service point. We’re here to help.</p>
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <a href="#" style="background: #fa923f; padding: 12px 32px; border-radius: 40px; text-decoration: none; color: white; font-weight: 700; display: inline-flex; gap: 8px;"><i class="fas fa-calendar-check"></i> Schedule repair</a>
+      <a href="{% url 'home' %}" style="background: transparent; border: 1.5px solid #fad2a6; padding: 12px 32px; border-radius: 40px; text-decoration: none; color: #fff0e2; font-weight: 600;"><i class="fas fa-home"></i> Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div style="display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 24px;">
+  
+  <span>
+    <i class="fas fa-phone-alt"></i> 
+    <a href="tel:+48788272185" style="text-decoration:none; color:inherit;">
+      +48 788 272 185
+    </a>
+  </span>
+
+  <span>
+    <i class="fas fa-envelope"></i> 
+    <a href="mailto:info.fixalbania@gmail.com" style="text-decoration:none; color:inherit;">
+      info.fixalbania@gmail.com
+    </a>
+  </span>
+
+  
+
+</div>
+    <div>
+      © 2025 FixAlbania – Premium repair services. All rights reserved. 
+      <span style="display: block; margin-top: 10px;"><i class="fas fa-tools"></i> Bringing trust back to every repair </span>
+    </div>
+  </div>
+</div>
+
+<!-- subtle note: the Home link button is at top navbar, plus additional home links for convenience -->
+</body>
+</html>
