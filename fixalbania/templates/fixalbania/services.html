@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | FixAlbania</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding-bottom: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card.active {
+            border: 3px solid #007bff;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .category-card h3 {
+            padding: 10px;
+            margin: 0;
+        }
+
+        /* SERVICES (NO IMAGES) */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .service-content h3 {
+            margin: 0 0 10px;
+            color: #1e293b;
+        }
+
+        .service-content p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .category-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-home a {
+            text-decoration: none;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .active-info {
+            text-align: center;
+            margin: 20px 0;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>📁 Our Categories</h1>
+
+<div class="back-home">
+    <a href="{% url 'home' %}">🏠 Back to Home</a>
+</div>
+
+<div class="container">
+
+    <!-- CATEGORIES -->
+    <div class="categories" id="categoriesContainer">
+        {% for category in categories %}
+            <div class="category-card"
+                 data-id="{{ category.id }}"
+                 data-name="{{ category.name }}">
+
+                {% if category.image %}
+                    <img src="{{ category.image.url }}">
+                {% endif %}
+
+                <h3>{{ category.name }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="active-info" id="infoText">
+        👆 Click a category to see services
+    </div>
+
+    <!-- SERVICES -->
+    <div class="services" id="servicesContainer">
+        <div class="empty">No services selected</div>
+    </div>
+
+</div>
+
+<script>
+    const servicesData = [
+        {% for service in services %}
+        {
+            id: {{ service.id }},
+            title: "{{ service.title|escapejs }}",
+            description: "{{ service.description|escapejs|truncatewords:20 }}",
+            categoryId: {{ service.category.id }},
+            categoryName: "{{ service.category.name|escapejs }}"
+        },
+        {% endfor %}
+    ];
+
+    const categoryCards = document.querySelectorAll('.category-card');
+    const servicesContainer = document.getElementById('servicesContainer');
+    const infoText = document.getElementById('infoText');
+
+    categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const categoryId = parseInt(card.dataset.id);
+            const categoryName = card.dataset.name;
+
+            // Highlight active
+            categoryCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            // Filter services
+            const filtered = servicesData.filter(s => s.categoryId === categoryId);
+
+            servicesContainer.innerHTML = '';
+
+            if (filtered.length === 0) {
+                servicesContainer.innerHTML = '<div class="empty">No services in this category</div>';
+            } else {
+                filtered.forEach(service => {
+                    const div = document.createElement('div');
+                    div.className = 'service-card';
+
+                    div.innerHTML = `
+                        <div class="service-content">
+                            <div class="category-label">${service.categoryName}</div>
+                            <h3>${service.title}</h3>
+                            <p>${service.description}</p>
+                        </div>
+                    `;
+
+                    servicesContainer.appendChild(div);
+                });
+            }
+
+            infoText.innerHTML = `Showing services for <strong>${categoryName}</strong>`;
+        });
+    });
+</script>
+
+</body>
+</html>

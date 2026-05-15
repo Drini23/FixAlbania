@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixAlbania | Professional Home Services Across Albania</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 4px;
+        }
+
+        /* NAVBAR - Modern Glass Effect */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f59e0b, #e67e22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f59e0b;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #f59e0b;
+        }
+
+        /* HERO SECTION - Enhanced */
+        .hero {
+            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(0,0,0,0.7)),
+                        url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 120px 5%;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 span {
+            color: #f59e0b;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.1s backwards;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #f59e0b, #e67e22);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245,158,11,0.4);
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+            padding: 4rem 5%;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .about-content h2 span {
+            color: #f59e0b;
+        }
+
+        .about-content p {
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #f59e0b;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Country Coverage Banner */
+        .coverage-banner {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 2.5rem 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .coverage-banner h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .city {
+            background: rgba(245,158,11,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1e293b;
+        }
+
+        .section-header p {
+            color: #64748b;
+            max-width: 600px;
+            margin: 0.5rem auto 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* CATEGORIES Grid */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .category {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .category.active {
+            border: 2px solid #f59e0b;
+            box-shadow: 0 8px 25px rgba(245,158,11,0.25);
+        }
+
+        .category img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover img {
+            transform: scale(1.05);
+        }
+
+        .category h3 {
+            padding: 1rem;
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Services Header */
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .services-header h2 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .active-badge {
+            background: linear-gradient(135deg, #f59e0b, #e67e22);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(245,158,11,0.3);
+        }
+
+        /* SERVICES Grid */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+            min-height: 350px;
+        }
+
+        .service {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .service img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 1.2rem;
+        }
+
+        .service-content h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .service-content p {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .service-category {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #f59e0b;
+            background: #fef3c7;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+        }
+
+        /* Empty State */
+        .empty-services {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #f59e0b, #e67e22);
+            padding: 3rem 5%;
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section .btn-white {
+            background: white;
+            color: #f59e0b;
+            margin-top: 1rem;
+            box-shadow: none;
+        }
+
+        .cta-section .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .services-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .cities {
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">🔧 FixAlbania</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="{% url 'about_us' %}">About</a>
+            <a href="{% url 'services' %}">Services</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="hero">
+            <h1>Professional Home Services <span>Across Albania</span></h1>
+            <p>From Tirana to Saranda, we bring quality craftsmanship to your doorstep. Reliable, affordable, and trusted by thousands.</p>
+            <a href="#categories-section" class="btn">Explore Our Services →</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION - Who We Are -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Who We Are? <span>FixAlbania</span></h2>
+                <p>FixAlbania is the country's leading platform connecting homeowners with verified, professional service providers. Since our founding, we've helped thousands of Albanian families maintain and improve their homes with trust and quality.</p>
+                <p>We carefully vet every professional in our network to ensure you receive nothing but the best service. From emergency repairs to complete renovations, we've got you covered.</p>
+                <div class="features">
+                    <div class="feature-item">Verified Professionals</div>
+                    <div class="feature-item">Best Price Guarantee</div>
+                    <div class="feature-item">24/7 Customer Support</div>
+                    <div class="feature-item">Free Estimates</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- COUNTRY COVERAGE BANNER -->
+    <div class="coverage-banner">
+        <h3> We Work Across All Albania</h3>
+        <p>From north to south, east to west — we're everywhere you need us</p>
+        <div class="cities">
+            <span class="city">🏛️ Tirana</span>
+            <span class="city">🏖️ Durrës</span>
+            <span class="city">🏔️ Shkodër</span>
+            <span class="city">🏘️ Elbasan</span>
+            <span class="city">🌊 Vlorë</span>
+            <span class="city">🏛️ Korçë</span>
+            <span class="city">🏖️ Saranda</span>
+            <span class="city">🏔️ Berat</span>
+            <span class="city">🏘️ Gjirokastër</span>
+            <span class="city">🌲 Pogradec</span>
+        </div>
+    </div>
+
+    <!-- CATEGORIES SECTION -->
+    <div class="container" id="categories-section">
+        <div class="section-header">
+            <h2>📁 Browse Service Categories</h2>
+            <p>Click on any category to discover our specialized services</p>
+        </div>
+        <div class="categories" id="categoriesContainer">
+            {% for category in categories %}
+                <div class="category" data-category-id="{{ category.id }}" data-category-name="{{ category.name }}">
+                    {% if category.image %}
+                        <img src="{{ category.image.url }}" alt="{{ category.name }}" size="200x100">
+                    {% else %}
+                        <img src="https://picsum.photos/400/200?random={{ category.id }}" alt="{{ category.name }}">
+                    {% endif %}
+                    <h3>{{ category.name }}</h3>
+                </div>
+            {% empty %}
+                <div class="empty-services" style="grid-column: 1/-1;">
+                    Loading categories...
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- SERVICES SECTION (Dynamic) -->
+    
+    <!-- CTA SECTION -->
+    <div class="cta-section">
+        <h3>Need a Professional? We're Here to Help!</h3>
+        <p>Get free quotes from trusted experts in your area</p>
+        <a href="{% url 'contact' %}" class="btn btn-white">Contact Us Today →</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="footer">
+        <p>📍 Serving all cities across Albania | 📞 +48 788 272 185 | ✉️ info.fixalbania@gmail.com</p>
+        <p>© 2026 FixAlbania - Your Trusted Home Service Partner Across Albania</p>
+    </footer>
+
+    <script>
+        // ============================================
+        // FIXALBANIA - INTERACTIVE SERVICES
+        // Category click shows only services from that category
+        // ============================================
+        
+        // Get all services data from Django template
+        const servicesData = [
+            {% for service in services %}
+                {
+                    id: {{ service.id }},
+                    title: "{{ service.title|escapejs }}",
+                    description: "{{ service.description|escapejs|truncatewords:20 }}",
+                    {% if service.image %}
+                        image: "{{ service.image.url }}",
+                    {% else %}
+                        image: "https://picsum.photos/400/220?random={{ service.id }}",
+                    {% endif %}
+                    categoryId: {{ service.category.id }},
+                    categoryName: "{{ service.category.name|escapejs }}"
+                }{% if not forloop.last %},{% endif %}
+            {% empty %}
+                // No services in database
+            {% endfor %}
+        ];
+        
+        // DOM elements
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        const servicesContainer = document.getElementById('servicesContainer');
+        const activeCategoryBadge = document.getElementById('activeCategoryBadge');
+        
+        // Track selected category
+        let selectedCategoryId = null;
+        
+        // Render services for selected category
+        function renderServicesByCategory(categoryId, categoryName) {
+            const filteredServices = servicesData.filter(service => service.categoryId === categoryId);
+            servicesContainer.innerHTML = '';
+            
+            if (filteredServices.length === 0) {
+                const emptyMessage = document.createElement('div');
+                emptyMessage.className = 'empty-services';
+                emptyMessage.innerHTML = '📭 No services available in this category yet.<br><small>New services are added regularly!</small>';
+                servicesContainer.appendChild(emptyMessage);
+                return;
+            }
+            
+            filteredServices.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service';
+                
+                const img = document.createElement('img');
+                img.src = service.image;
+                img.alt = service.title;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    this.src = 'https://placehold.co/400x220/e2e8f0/64748b?text=' + encodeURIComponent(service.title.substring(0, 15));
+                };
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'service-content';
+                
+                const title = document.createElement('h3');
+                title.textContent = service.title;
+                
+                const description = document.createElement('p');
+                description.textContent = service.description;
+                
+                const categoryLabel = document.createElement('div');
+                categoryLabel.className = 'service-category';
+                categoryLabel.textContent = service.categoryName;
+                
+                contentDiv.appendChild(title);
+                contentDiv.appendChild(description);
+                contentDiv.appendChild(categoryLabel);
+                
+                serviceCard.appendChild(img);
+                serviceCard.appendChild(contentDiv);
+                servicesContainer.appendChild(serviceCard);
+            });
+        }
+        
+        // Update active category highlight
+        function updateActiveCategory(categoryId) {
+            document.querySelectorAll('.category').forEach(card => {
+                const cardId = parseInt(card.getAttribute('data-category-id'));
+                if (cardId === categoryId) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+        
+        // Handle category click
+        function onCategoryClick(categoryId, categoryName) {
+            selectedCategoryId = categoryId;
+            updateActiveCategory(categoryId);
+            renderServicesByCategory(categoryId, categoryName);
+            
+            const serviceCount = servicesData.filter(s => s.categoryId === categoryId).length;
+            activeCategoryBadge.innerHTML = `📌 ${categoryName} (${serviceCount} service${serviceCount !== 1 ? 's' : ''})`;
+            
+            // Smooth scroll to services
+            document.getElementById('services-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Attach click handlers to categories
+        function attachCategoryHandlers() {
+            document.querySelectorAll('.category').forEach(card => {
+                card.removeEventListener('click', card._handler);
+                const categoryId = parseInt(card.getAttribute('data-category-id'));
+                const categoryName = card.getAttribute('data-category-name');
+                const handler = () => onCategoryClick(categoryId, categoryName);
+                card._handler = handler;
+                card.addEventListener('click', handler);
+                card.style.cursor = 'pointer';
+            });
+        }
+        
+        // Initialize
+        function init() {
+            attachCategoryHandlers();
+            
+            // Smooth scroll for nav links
+            document.querySelectorAll('.nav-links a, .btn, .btn-white').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
+            console.log('FixAlbania Ready | Services:', servicesData.length, 'Categories:', document.querySelectorAll('.category').length);
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
