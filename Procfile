@@ -1,1 +1,1 @@
-web: pipenv run gunicorn albaniafix.wsgi:application --log-file -
+web: gunicorn albaniafix.wsgi:application --log-file -
