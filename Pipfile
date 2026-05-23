@@ -9,6 +9,7 @@ pillow = "*"
 gunicorn= "*"
 whitenoise = "*"
 django-ratelimit = "*"
+pymysql = "*"
 
 [dev-packages]
 
