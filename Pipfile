@@ -10,6 +10,7 @@ gunicorn= "*"
 whitenoise = "*"
 django-ratelimit = "*"
 pymysql = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
