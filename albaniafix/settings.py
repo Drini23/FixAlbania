@@ -82,7 +82,10 @@ WSGI_APPLICATION = 'albaniafix.wsgi.application'
 import os
 import dj_database_url
 
-DATABASE_URL = os.getenv("MYSQL_URL")
+import os
+import dj_database_url
+
+DATABASE_URL = os.environ.get("MYSQL_URL")
 
 if DATABASE_URL:
     DATABASES = {
@@ -93,6 +96,7 @@ if DATABASE_URL:
         )
     }
 else:
+    # LOCAL fallback (important!)
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -151,3 +155,5 @@ SESSION_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = [
     "https://fixalbania.up.railway.app"
 ]
+
+print("DB USED:", DATABASES)
