@@ -80,23 +80,30 @@ WSGI_APPLICATION = 'albaniafix.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 import os
-import dj_database_url
 
-import os
-import dj_database_url
+# Debug: Print MySQL environment variables
+print("MYSQLHOST:", os.environ.get("MYSQLHOST"))
+print("MYSQLUSER:", os.environ.get("MYSQLUSER"))
+print("MYSQLPASSWORD:", os.environ.get("MYSQLPASSWORD"))
+print("MYSQLDATABASE:", os.environ.get("MYSQLDATABASE"))
+print("MYSQLPORT:", os.environ.get("MYSQLPORT"))
 
-DATABASE_URL = os.environ.get("MYSQL_URL")
+MYSQLHOST = os.environ.get("MYSQLHOST")
 
-if DATABASE_URL:
+if MYSQLHOST:
+    # Production: Use explicit MySQL configuration
     DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
-            conn_max_age=600,
-            engine="django.db.backends.mysql",
-        )
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.environ.get("MYSQLDATABASE"),
+            "USER": os.environ.get("MYSQLUSER"),
+            "PASSWORD": os.environ.get("MYSQLPASSWORD"),
+            "HOST": os.environ.get("MYSQLHOST"),
+            "PORT": os.environ.get("MYSQLPORT", "3306"),
+        }
     }
 else:
-    # LOCAL fallback (important!)
+    # Local fallback: Use SQLite for development
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
