@@ -156,4 +156,3 @@ CSRF_TRUSTED_ORIGINS = [
     "https://fixalbania.up.railway.app"
 ]
 
-print("DB USED:", DATABASES)
