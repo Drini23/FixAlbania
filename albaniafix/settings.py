@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
+import dj_database_url
 import pymysql
 pymysql.install_as_MySQLdb()
 
@@ -76,33 +77,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'albaniafix.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-import os
-import dj_database_url
-
-import os
-import dj_database_url
-
-DATABASE_URL = os.environ.get("MYSQL_URL")
+# ===== DATABASE CONFIGURATION =====
+# Try to get DATABASE_URL from environment (Railway provides this automatically)
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
+    # Production: Use PostgreSQL on Railway
     DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
             conn_max_age=600,
-            engine="django.db.backends.mysql",
+            ssl_require=True  # Railway requires SSL for PostgreSQL
         )
     }
 else:
-    # LOCAL fallback (important!)
+    # Local development: Use SQLite
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

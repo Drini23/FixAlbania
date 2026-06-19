@@ -11,6 +11,7 @@ whitenoise = "*"
 django-ratelimit = "*"
 pymysql = "*"
 dj-database-url = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
