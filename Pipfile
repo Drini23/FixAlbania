@@ -12,6 +12,7 @@ django-ratelimit = "*"
 pymysql = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
