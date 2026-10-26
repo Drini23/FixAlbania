@@ -9,8 +9,22 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+<<<<<<< HEAD
 
 from pathlib import Path
+=======
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
+import pymysql
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env')
+pymysql.install_as_MySQLdb()
+
+>>>>>>> e51e6c0d1b8182d7b71f557c43a9b17cb4a7c18e
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,11 +33,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
+<<<<<<< HEAD
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-rgx5w)%_ak=eny((==i)%z_-bmmace@5gf2+(a10lfy2o_*dvp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+=======
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+DEBUG = False
+>>>>>>> e51e6c0d1b8182d7b71f557c43a9b17cb4a7c18e
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,8 +61,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+<<<<<<< HEAD
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+=======
+    'django_ratelimit.middleware.RatelimitMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+>>>>>>> e51e6c0d1b8182d7b71f557c43a9b17cb4a7c18e
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,6 +97,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'albaniafix.wsgi.application'
 
 
+<<<<<<< HEAD
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
@@ -80,6 +107,29 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+=======
+# ===== DATABASE CONFIGURATION =====
+# Try to get DATABASE_URL from environment (Railway provides this automatically)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    # Production: Use PostgreSQL on Railway
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True  # Railway requires SSL for PostgreSQL
+        )
+    }
+else:
+    # Local development: Use SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+>>>>>>> e51e6c0d1b8182d7b71f557c43a9b17cb4a7c18e
 
 
 # Password validation
@@ -113,6 +163,7 @@ USE_I18N = True
 USE_TZ = True
 
 
+<<<<<<< HEAD
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
@@ -130,4 +181,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+=======
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://fixalbania.up.railway.app"
+]
+>>>>>>> e51e6c0d1b8182d7b71f557c43a9b17cb4a7c18e
 

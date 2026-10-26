@@ -6,7 +6,17 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+<<<<<<< HEAD
 gunicorn = "*"
+=======
+gunicorn= "*"
+whitenoise = "*"
+django-ratelimit = "*"
+pymysql = "*"
+dj-database-url = "*"
+psycopg2-binary = "*"
+python-dotenv = "*"
+>>>>>>> e51e6c0d1b8182d7b71f557c43a9b17cb4a7c18e
 
 [dev-packages]
 

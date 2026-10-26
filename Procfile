@@ -1,0 +1,1 @@
+web: gunicorn albaniafix.wsgi:application --log-file -
